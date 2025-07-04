@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>Rayan.com - Portfolio</title>
+    <title>My Portfolio</title>
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
@@ -30,6 +29,7 @@
             padding: 20px;
         }
         
+        /* Critical layout styles only */
         .content-area {
             background: #1a1a1a;
             border: 1px solid #333;
@@ -44,20 +44,30 @@
         
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease-in;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Hide non-critical images initially */
+        img:not([data-src]), video:not([data-src]) {
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
+    </style>
+    <!-- Defer non-critical CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap"></noscript>
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cyberbold" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cyberbold"></noscript>
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/robocode" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/robocode"></noscript>
+    <!-- Inline the rest of the CSS with media queries -->
+    <style>
+        /* Rest of your CSS styles go here */
         .header {
             text-align: center;
             margin-bottom: 40px;
             color: #4a9eff;
         }
-        
+
         .header h1 {
             font-family: 'Cyberbold', 'Orbitron', sans-serif;
             font-size: 3em;
@@ -66,7 +76,16 @@
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-        
+
+        .header p {
+            font-family: 'Cyberbold', 'Orbitron', sans-serif;
+            font-size: 1.1em;
+            opacity: 0.8;
+            font-weight: 400;
+            color: #7bb3ff;
+            letter-spacing: 1px;
+        }
+
         .nav-container {
             background: #1a1a1a;
             border: 1px solid #333;
@@ -74,7 +93,7 @@
             padding: 20px;
             margin-bottom: 30px;
         }
-        
+
         .nav-tabs {
             display: flex;
             justify-content: center;
@@ -82,7 +101,7 @@
             gap: 10px;
             margin-bottom: 30px;
         }
-        
+
         .nav-tab {
             padding: 12px 24px;
             background: #2a2a2a;
@@ -97,24 +116,29 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        
+
         .nav-tab:hover {
             background: #333;
             border-color: #4a9eff;
             color: #4a9eff;
         }
-        
+
         .nav-tab.active {
             background: #4a9eff;
             color: #000;
             border-color: #4a9eff;
         }
-        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .hero-section {
             text-align: center;
             padding: 40px 0;
         }
-        
+
         .hero-section h2 {
             font-family: 'Cyberbold', 'Orbitron', sans-serif;
             font-size: 2.5em;
@@ -124,7 +148,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        
+
         .hero-section p {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
             font-size: 1.2em;
@@ -133,14 +157,14 @@
             font-weight: 400;
             letter-spacing: 0.5px;
         }
-        
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
-        
+
         .skill-card {
             background: #2a2a2a;
             border: 1px solid #444;
@@ -150,12 +174,12 @@
             text-align: center;
             transition: all 0.3s ease;
         }
-        
+
         .skill-card:hover {
             border-color: #4a9eff;
             background: #333;
         }
-        
+
         .skill-card h3 {
             font-family: 'Cyberbold', 'Orbitron', sans-serif;
             color: #4a9eff;
@@ -164,18 +188,18 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        
+
         .skill-card p {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
         }
-        
+
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
-        
+
         .project-card {
             background: #2a2a2a;
             border: 1px solid #444;
@@ -183,12 +207,12 @@
             padding: 20px;
             transition: all 0.3s ease;
         }
-        
+
         .project-card:hover {
             border-color: #4a9eff;
             background: #333;
         }
-        
+
         .project-card h3 {
             font-family: 'Cyberbold', 'Orbitron', sans-serif;
             color: #4a9eff;
@@ -196,22 +220,22 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
-        
+
         .project-card p {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
             color: #b0b0b0;
             margin-bottom: 10px;
         }
-        
+
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
@@ -219,7 +243,7 @@
             font-weight: 400;
             color: #4a9eff;
         }
-        
+
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -232,13 +256,13 @@
             color: #e0e0e0;
             transition: border-color 0.3s ease;
         }
-        
+
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #4a9eff;
         }
-        
+
         .submit-btn {
             background: #4a9eff;
             color: #000;
@@ -253,18 +277,18 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .submit-btn:hover {
             background: #2080ff;
         }
-        
+
         .social-links {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 30px;
         }
-        
+
         .social-link {
             padding: 10px 20px;
             background: #2a2a2a;
@@ -278,17 +302,17 @@
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
-        
+
         .social-link:hover {
             background: #4a9eff;
             color: #000;
         }
-        
+
         .season-image {
             text-align: center;
             margin-top: 20px;
         }
-        
+
         .season-image img,
         .season-image video {
             max-width: 100%;
@@ -296,39 +320,33 @@
             border-radius: 8px;
             border: 2px solid #4a9eff;
             box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+            opacity: 1 !important;
         }
-        
+
         /* Make sure all regular text uses Comic Sans */
         p, li, span, div:not(.nav-tab):not(.skill-card h3):not(.project-card h3):not(.form-group label):not(.social-link) {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive !important;
         }
-        
+
         @media (max-width: 768px) {
             .nav-tabs {
                 flex-direction: column;
                 align-items: center;
             }
-        
+
             .nav-tab {
                 width: 200px;
             }
-        
+
             .header h1 {
                 font-size: 2em;
             }
-        
+
             .content-area {
                 padding: 20px;
             }
         }
     </style>
-    <!-- Defer non-critical CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap"></noscript>
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cyberbold" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cyberbold"></noscript>
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/robocode" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/robocode"></noscript>
 </head>
 <body>
     <div class="container">
@@ -404,7 +422,7 @@
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 20px; font-size: 1.1em;">7405N Millburn Robotics High Stakes</p>
                     
                     <div class="season-image">
-                        <img src="nebula.jpg" alt="Millburn Nebula Team Robot - 2024-2025 Season" loading="lazy">
+                        <img data-src="nebula.jpg" alt="Millburn Nebula Team Robot - 2024-2025 Season" loading="lazy" />
                     </div>
                     
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 40px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">2023-2024 Season</h3>
@@ -412,7 +430,7 @@
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 20px; font-size: 1.1em;">4610R Robot Revolution Over Under</p>
                     
                     <div class="season-image">
-                        <img src="under.jpg" alt="Robot Revolution Team Robot - 2023-2024 Season Over Under" loading="lazy">
+                        <img data-src="under.jpg" alt="Robot Revolution Team Robot - 2023-2024 Season Over Under" loading="lazy" />
                     </div>
                     
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 40px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">2022-2023 Season</h3>
@@ -420,26 +438,26 @@
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 20px; font-size: 1.1em;">81B Robot Revolution Slapshot</p>
                     
                     <div class="season-image">
-                        <img src="clown.jpg" alt="Robot Revolution Team Robot - 2022-2023 Season Slapshot" loading="lazy">
+                        <img data-src="clown.jpg" alt="Robot Revolution Team Robot - 2022-2023 Season Slapshot" loading="lazy" />
                     </div>
                     
                     <h4 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; font-size: 1.2em;">Additional Images</h4>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
                         <div class="season-image">
-                            <img src="iq.jpg" alt="VEX IQ Competition" loading="lazy">
+                            <img data-src="IQ.jpg" alt="VEX IQ Competition" loading="lazy" />
                         </div>
                         <div class="season-image">
-                            <img src="sbhs.jpg" alt="SBHS Competition" loading="lazy">
+                            <img data-src="sbhs.jpg" alt="SBHS Competition" loading="lazy" />
                         </div>
                     </div>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;">
                         <div class="season-image">
-                            <img src="mill.jpg" alt="Mill Competition" loading="lazy">
+                            <img data-src="mill.jpg" alt="Mill Competition" loading="lazy" />
                         </div>
                         <div class="season-image">
-                            <img src="sugar.jpg" alt="Sugar Competition" loading="lazy">
+                            <img data-src="sugar.jpg" alt="Sugar Competition" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -457,13 +475,13 @@
                             
                             <div class="season-image" style="margin-top: 20px;">
                                 <video controls preload="none" style="width: 80%; max-width: 600px; height: auto; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #4a9eff; box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);">
-                                    <source src="lazy.mp4" type="video/mp4">
+                                    <source data-src="lazy.mp4" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
                             
                             <div class="season-image" style="margin-top: 15px;">
-                                <img src="lazydiagram.jpg" alt="The Lazy Switch Diagram" loading="lazy">
+                                <img data-src="lazydiagram.jpg" alt="The Lazy Switch Diagram" loading="lazy" />
                             </div>
                         </div>
                     </div>
@@ -473,31 +491,31 @@
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">Gen 1</h3>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="gen1.jpg" alt="Gen 1 Game Console" loading="lazy">
+                        <img data-src="Gen1.jpg" alt="Gen 1 Game Console" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="gen1diagram.jpg" alt="Gen 1 Game Console Diagram" loading="lazy">
+                        <img data-src="gen1diagram.jpg" alt="Gen 1 Game Console Diagram" loading="lazy" />
                     </div>
                     
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">Gen 2</h3>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="gen2.jpg" alt="Gen 2 Game Console" loading="lazy">
+                        <img data-src="Gen2.jpg" alt="Gen 2 Game Console" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="gamer.jpg" alt="Gamer Image" loading="lazy">
+                        <img data-src="gamer.jpg" alt="Gamer Image" loading="lazy" />
                     </div>
                     
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">Gen 3</h3>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="gen3.jpg" alt="Gen 3 Game Console" loading="lazy">
+                        <img data-src="Gen3.jpg" alt="Gen 3 Game Console" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="fold.jpg" alt="Fold Image" loading="lazy">
+                        <img data-src="fold.jpg" alt="Fold Image" loading="lazy" />
                     </div>
                     
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 30px;"><strong>Status:</strong> Completed</p>
@@ -507,24 +525,24 @@
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">V1</h3>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="car.jpg" alt="Drive-train V1 Car" loading="lazy">
+                        <img data-src="Car.jpg" alt="Drive-train V1 Car" loading="lazy" />
                     </div>
                     
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">V2</h3>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="v2.jpg" alt="Drive-train V2" loading="lazy">
+                        <img data-src="V2.jpg" alt="Drive-train V2" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
                         <video controls preload="none" style="width: 80%; max-width: 600px; height: auto; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #4a9eff; box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);">
-                            <source src="v2.mp4" type="video/mp4">
+                            <source data-src="V2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="v3.jpg" alt="Drive-train V3" loading="lazy">
+                        <img data-src="V3.jpg" alt="Drive-train V3" loading="lazy" />
                     </div>
 
                     <!-- Animatronic Section -->
@@ -533,37 +551,37 @@
                     <h4 style="color: #4a9eff; font-weight: 700; margin-top: 20px; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Modal 1</h4>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="anim.jpg" alt="Animatronic Modal 1" loading="lazy">
+                        <img data-src="Anim.jpg" alt="Animatronic Modal 1" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="ani.jpg" alt="Animatronic Modal 1 Alternate" loading="lazy">
+                        <img data-src="Ani.jpg" alt="Animatronic Modal 1 Alternate" loading="lazy" />
                     </div>
                     
                     <h4 style="color: #4a9eff; font-weight: 700; margin-top: 20px; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Modal 2</h4>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="animat.jpg" alt="Animatronic Modal 2" loading="lazy">
+                        <img data-src="Animat.jpg" alt="Animatronic Modal 2" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="anima.jpg" alt="Animatronic Modal 2 Alternate" loading="lazy">
+                        <img data-src="Anima.jpg" alt="Animatronic Modal 2 Alternate" loading="lazy" />
                     </div>
                     
                     <h4 style="color: #4a9eff; font-weight: 700; margin-top: 20px; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Modal 3</h4>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="animatr.jpg" alt="Animatronic Modal 3" loading="lazy">
+                        <img data-src="Animatr.jpg" alt="Animatronic Modal 3" loading="lazy" />
                     </div>
                     
                     <h4 style="color: #4a9eff; font-weight: 700; margin-top: 20px; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Modal 4</h4>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="animatron.jpg" alt="Animatronic Modal 4" loading="lazy">
+                        <img data-src="Animatron.jpg" alt="Animatronic Modal 4" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="animatroni.jpg" alt="Animatronic Modal 4 Alternate" loading="lazy">
+                        <img data-src="Animatroni.jpg" alt="Animatronic Modal 4 Alternate" loading="lazy" />
                     </div>
                     
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 30px;"><strong>Status:</strong> Complete</p>
@@ -572,25 +590,25 @@
                     <h3 style="color: #4a9eff; font-weight: 700; margin-top: 30px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase;">Self Watering Plant</h3>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="plant.jpg" alt="Self Watering Plant" loading="lazy">
+                        <img data-src="plant.jpg" alt="Self Watering Plant" loading="lazy" />
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
                         <video controls preload="none" style="width: 80%; max-width: 600px; height: auto; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #4a9eff; box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);">
-                            <source src="plant.mp4" type="video/mp4">
+                            <source data-src="Plant.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
                         <video controls preload="none" style="width: 80%; max-width: 600px; height: auto; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #4a9eff; box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);">
-                            <source src="plants.mp4" type="video/mp4">
+                            <source data-src="Plants.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     
                     <div class="season-image" style="margin-bottom: 15px;">
-                        <img src="player.jpg" alt="Self Watering Plant Controller" loading="lazy">
+                        <img data-src="player.jpg" alt="Self Watering Plant Controller" loading="lazy" />
                     </div>
                     
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 30px;"><strong>Status:</strong> Complete</p>
@@ -616,7 +634,7 @@
                     </div>
 
                     <div class="season-image" style="margin-bottom: 30px;">
-                        <img src="judge.png" alt="NJ States" loading="lazy">
+                        <img data-src="Judge.PNG" alt="NJ States" loading="lazy" />
                     </div>
                 </div>
 
@@ -626,7 +644,7 @@
                     <p style="color: #b0b0b0; font-weight: 400; letter-spacing: 0.5px; text-align: center; margin-bottom: 30px;">Here is my current resume for your reference</p>
                     
                     <div class="season-image">
-                        <img src="resume.jpg" alt="Rayan Imran's Resume" style="max-width: 800px;" loading="lazy">
+                        <img data-src="Resume.jpg" alt="Rayan Imran's Resume" style="max-width: 800px;" loading="lazy" />
                     </div>
                 </div>
 
@@ -674,23 +692,19 @@
     </div>
 
     <script>
+        // Load critical functionality first
         function showTab(tabName) {
-            // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Remove active class from all tabs
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Show selected tab content
             document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked tab
             event.target.classList.add('active');
             
             // Load images for the active tab
@@ -702,25 +716,51 @@
             const activeTab = document.querySelector('.tab-content.active');
             if (!activeTab) return;
             
-            const mediaElements = activeTab.querySelectorAll('img[loading="lazy"], video');
+            const mediaElements = activeTab.querySelectorAll('img[data-src], video source[data-src]');
             
             mediaElements.forEach(media => {
-                if (media.tagName === 'IMG' && !media.complete) {
-                    media.onload = function() {
-                        this.style.opacity = 1;
-                    };
+                if (media.tagName === 'IMG') {
+                    media.src = media.getAttribute('data-src');
+                    media.removeAttribute('data-src');
+                } else if (media.tagName === 'SOURCE') {
+                    media.src = media.getAttribute('data-src');
+                    media.removeAttribute('data-src');
+                    media.parentElement.load();
                 }
             });
         }
 
-        // Initialize
+        // Intersection Observer for lazy loading
+        if ('IntersectionObserver' in window) {
+            const lazyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const media = entry.target;
+                        if (media.tagName === 'IMG' && media.hasAttribute('data-src')) {
+                            media.src = media.getAttribute('data-src');
+                            media.removeAttribute('data-src');
+                        } else if (media.tagName === 'VIDEO') {
+                            const source = media.querySelector('source[data-src]');
+                            if (source) {
+                                source.src = source.getAttribute('data-src');
+                                source.removeAttribute('data-src');
+                                media.load();
+                            }
+                        }
+                        lazyObserver.unobserve(media);
+                    }
+                });
+            }, {
+                rootMargin: '200px'
+            });
+
+            document.querySelectorAll('img[data-src], video').forEach(media => {
+                lazyObserver.observe(media);
+            });
+        }
+
+        // Load images for the initially active tab
         document.addEventListener('DOMContentLoaded', function() {
-            // Change URL display for local testing
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                history.replaceState({}, '', '/Rayan.com');
-            }
-            
-            // Load initial tab content
             loadVisibleMedia();
         });
     </script>
